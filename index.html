@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CHB — Eva Smooth Mascot</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+      :root {
+        --bg: #05070b;
+        --border: rgba(255, 255, 255, 0.08);
+        --accent: #d4a856;
+        --accent-soft: #f0c878;
+        --text: #f7efe4;
+        --muted: #9da3b2;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Montserrat", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 72% 12%, rgba(212, 168, 86, 0.14), transparent 28%),
+          radial-gradient(circle at 12% 18%, rgba(64, 84, 118, 0.16), transparent 30%),
+          linear-gradient(180deg, #05070b 0%, #070a10 48%, #030407 100%);
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background:
+          linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+          linear-gradient(rgba(255, 255, 255, 0.014) 1px, transparent 1px);
+        background-size: 70px 70px;
+        mask-image: linear-gradient(to bottom, black, transparent 82%);
+      }
+
+      a, button { font: inherit; }
+      a { color: inherit; text-decoration: none; }
+
+      .page {
+        position: relative;
+        width: min(1540px, calc(100% - 30px));
+        margin: 16px auto 28px;
+        border: 1px solid var(--border);
+        border-radius: 28px;
+        background: rgba(5, 7, 11, 0.76);
+        box-shadow: 0 28px 90px rgba(0, 0, 0, 0.64);
+        overflow: hidden;
+      }
+
+      .page::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        border-radius: 28px;
+        box-shadow: inset 0 0 0 1px rgba(212, 168, 86, 0.08), inset 0 0 80px rgba(0, 0, 0, 0.34);
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        height: 76px;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 28px;
+        padding: 0 34px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.075);
+        background: rgba(5, 7, 11, 0.86);
+      }
+
+      .brand img {
+        height: 34px;
+        display: block;
+        filter: drop-shadow(0 0 18px rgba(212, 168, 86, 0.2));
+      }
+
+      nav {
+        display: flex;
+        justify-content: center;
+        gap: clamp(16px, 2vw, 42px);
+        color: rgba(247, 239, 228, 0.64);
+        font-size: 14px;
+      }
+
+      nav a {
+        position: relative;
+        padding: 28px 0 25px;
+        transition: color 0.24s ease;
+      }
+
+      nav a:hover, nav a.active { color: var(--text); }
+
+      nav a.active::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -1px;
+        height: 2px;
+        border-radius: 2px;
+        background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        box-shadow: 0 0 20px rgba(212, 168, 86, 0.7);
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .moon-toggle, .login {
+        border: 1px solid rgba(212, 168, 86, 0.28);
+        color: var(--accent-soft);
+        background: rgba(255, 255, 255, 0.025);
+        transition: background 0.24s ease, border-color 0.24s ease, transform 0.24s ease;
+      }
+
+      .moon-toggle {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+      }
+
+      .login {
+        min-width: 112px;
+        height: 42px;
+        border-radius: 11px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+      }
+
+      .moon-toggle:hover, .login:hover {
+        transform: translateY(-1px);
+        background: rgba(212, 168, 86, 0.14);
+        border-color: rgba(212, 168, 86, 0.72);
+      }
+
+      .hero {
+        position: relative;
+        min-height: 650px;
+        display: grid;
+        grid-template-columns: minmax(390px, 650px) 1fr;
+        gap: 32px;
+        padding: 64px 58px 36px;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(5, 7, 11, 0.94) 0%, rgba(5, 7, 11, 0.83) 39%, rgba(5, 7, 11, 0.56) 62%, rgba(5, 7, 11, 0.36) 100%),
+          url("https://90f1661d-2ff4-4f29-b07c-0e47453ca691.selstorage.ru/site1070969/723b066d-d9d6-4109-b1f0-ca39f24ce239.png") right center / cover no-repeat;
+        z-index: 0;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        right: 17%;
+        top: 88px;
+        width: 420px;
+        height: 420px;
+        border-radius: 50%;
+        background: rgba(212, 168, 86, 0.1);
+        filter: blur(62px);
+        z-index: 0;
+      }
+
+      .hero-content, .eva-stage {
+        position: relative;
+        z-index: 2;
+      }
+
+      .eyebrow {
+        margin-bottom: 18px;
+        color: var(--accent);
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 640px;
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(48px, 5vw, 78px);
+        font-weight: 700;
+        line-height: 0.92;
+        letter-spacing: -0.04em;
+      }
+
+      h1 span {
+        color: var(--accent-soft);
+        text-shadow: 0 0 24px rgba(212, 168, 86, 0.16);
+      }
+
+      .lead {
+        max-width: 560px;
+        margin: 26px 0 30px;
+        color: rgba(247, 239, 228, 0.68);
+        font-size: 17px;
+        line-height: 1.72;
+      }
+
+      .black-card-wrap {
+        width: min(100%, 440px);
+        margin: 18px 0 26px;
+        padding: 12px;
+        border: 1px solid rgba(212, 168, 86, 0.18);
+        border-radius: 18px;
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.015));
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.42), 0 0 42px rgba(212, 168, 86, 0.11);
+        cursor: pointer;
+        transition: transform 0.36s cubic-bezier(.2,.8,.2,1), border-color 0.36s ease, box-shadow 0.36s ease;
+      }
+
+      .black-card-wrap:hover {
+        transform: translateY(-4px);
+        border-color: rgba(212, 168, 86, 0.45);
+        box-shadow: 0 28px 68px rgba(0, 0, 0, 0.52), 0 0 55px rgba(212, 168, 86, 0.16);
+      }
+
+      .black-card-wrap img {
+        display: block;
+        width: 100%;
+        border-radius: 14px;
+      }
+
+      .features {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(120px, 1fr));
+        gap: 12px;
+        max-width: 560px;
+      }
+
+      .feature {
+        min-height: 78px;
+        padding: 14px 15px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.075);
+        border-radius: 16px;
+        background: rgba(6, 9, 14, 0.68);
+        cursor: default;
+        transition: transform 0.32s cubic-bezier(.2,.8,.2,1), border-color 0.32s ease, background 0.32s ease;
+      }
+
+      .feature:hover {
+        transform: translateY(-3px);
+        border-color: rgba(212, 168, 86, 0.35);
+        background: rgba(13, 18, 27, 0.76);
+      }
+
+      .feature img {
+        width: 31px;
+        height: 31px;
+        object-fit: contain;
+        filter: drop-shadow(0 0 10px rgba(212, 168, 86, 0.23));
+      }
+
+      .feature strong {
+        display: block;
+        font-size: 14px;
+        color: var(--text);
+      }
+
+      .feature small {
+        color: var(--muted);
+        font-size: 11px;
+      }
+
+      .cta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 24px;
+        margin-top: 30px;
+      }
+
+      .btn-primary {
+        min-width: 218px;
+        height: 58px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        border: 0;
+        border-radius: 13px;
+        color: #17110a;
+        font-weight: 700;
+        background: linear-gradient(135deg, #f1cb7c 0%, #c8963e 100%);
+        box-shadow: 0 18px 32px rgba(212, 168, 86, 0.22);
+        cursor: pointer;
+        transition: transform 0.32s cubic-bezier(.2,.8,.2,1), box-shadow 0.32s ease, filter 0.32s ease;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        filter: brightness(1.04);
+        box-shadow: 0 22px 42px rgba(212, 168, 86, 0.3);
+      }
+
+      .link-secondary {
+        color: var(--accent-soft);
+        font-weight: 600;
+        opacity: 0.9;
+        transition: opacity 0.24s ease, text-shadow 0.24s ease;
+      }
+
+      .link-secondary:hover {
+        opacity: 1;
+        text-shadow: 0 0 18px rgba(212, 168, 86, 0.28);
+      }
+
+      .eva-stage {
+        min-height: 545px;
+        align-self: end;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        pointer-events: none;
+        contain: layout paint;
+      }
+
+      .eva-wrap {
+        position: relative;
+        width: min(620px, 50vw);
+        min-width: 430px;
+        height: 640px;
+      }
+
+      .eva-sprite {
+        position: absolute;
+        right: -28px;
+        bottom: -44px;
+        width: min(540px, 47vw);
+        max-height: 710px;
+        object-fit: contain;
+        object-position: bottom center;
+        filter: drop-shadow(0 28px 32px rgba(0, 0, 0, 0.72));
+        opacity: 0;
+        transform: translateY(12px) scale(0.985);
+        transition:
+          opacity 0.5s ease,
+          transform 0.55s cubic-bezier(.2,.8,.2,1),
+          filter 0.45s ease;
+        will-change: opacity, transform;
+        backface-visibility: hidden;
+      }
+
+      .eva-sprite.is-active {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      .eva-sprite.is-leaving {
+        opacity: 0;
+        transform: translateY(-4px) scale(1.012);
+      }
+
+      .speech-bubble {
+        position: absolute;
+        top: 48px;
+        right: min(370px, 31vw);
+        width: min(360px, 78vw);
+        padding: 19px 21px 20px;
+        border: 1px solid rgba(212, 168, 86, 0.38);
+        border-radius: 18px 18px 4px 18px;
+        color: rgba(247, 239, 228, 0.92);
+        background:
+          linear-gradient(145deg, rgba(16, 21, 30, 0.94), rgba(8, 11, 17, 0.9)),
+          url("https://90f1661d-2ff4-4f29-b07c-0e47453ca691.selstorage.ru/site1070969/16af9d2c-9f66-4442-b56d-7ab33f5eae21.png") center / cover no-repeat;
+        box-shadow: 0 18px 46px rgba(0, 0, 0, 0.48), inset 0 0 28px rgba(212, 168, 86, 0.05);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(14px) scale(0.97);
+        transition:
+          opacity 0.34s ease,
+          transform 0.38s cubic-bezier(.2,.8,.2,1),
+          visibility 0.34s ease;
+      }
+
+      .speech-bubble.is-visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0) scale(1);
+      }
+
+      .speech-bubble.is-soft-changing {
+        transform: translateY(-2px) scale(1.01);
+      }
+
+      .speech-bubble::after {
+        content: "";
+        position: absolute;
+        right: -12px;
+        bottom: 26px;
+        width: 22px;
+        height: 22px;
+        background: rgba(10, 13, 19, 0.94);
+        border-right: 1px solid rgba(212, 168, 86, 0.38);
+        border-bottom: 1px solid rgba(212, 168, 86, 0.38);
+        transform: rotate(-45deg);
+      }
+
+      .speech-bubble .speaker {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+        color: var(--accent-soft);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .speech-bubble .speaker::before {
+        content: "☾";
+        font-size: 18px;
+        line-height: 1;
+      }
+
+      .speech-bubble p {
+        margin: 0;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 25px;
+        line-height: 1.17;
+        transition: opacity 0.22s ease, transform 0.22s ease;
+      }
+
+      .speech-bubble.is-text-changing p {
+        opacity: 0;
+        transform: translateY(4px);
+      }
+
+      .products {
+        position: relative;
+        z-index: 5;
+        display: grid;
+        grid-template-columns: 1.05fr 1fr 0.92fr;
+        gap: 16px;
+        padding: 0 22px 20px;
+        margin-top: -18px;
+      }
+
+      .product-card, .why {
+        min-height: 190px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 18px;
+        background: linear-gradient(145deg, rgba(18, 23, 33, 0.9), rgba(8, 11, 17, 0.86));
+        overflow: hidden;
+        position: relative;
+        transition: transform 0.36s cubic-bezier(.2,.8,.2,1), border-color 0.36s ease, background 0.36s ease;
+      }
+
+      .product-card {
+        padding: 24px;
+        display: grid;
+        grid-template-columns: 150px 1fr;
+        gap: 20px;
+        cursor: pointer;
+      }
+
+      .product-card:hover, .why:hover {
+        transform: translateY(-5px);
+        border-color: rgba(212, 168, 86, 0.38);
+        background: linear-gradient(145deg, rgba(22, 28, 39, 0.95), rgba(8, 11, 17, 0.92));
+      }
+
+      .product-card::after, .why::after {
+        content: "";
+        position: absolute;
+        inset: auto -40px -70px auto;
+        width: 160px;
+        height: 160px;
+        background: rgba(212, 168, 86, 0.08);
+        border-radius: 50%;
+        filter: blur(22px);
+      }
+
+      .product-card img {
+        align-self: center;
+        width: 100%;
+        max-height: 118px;
+        object-fit: contain;
+        filter: drop-shadow(0 16px 22px rgba(0, 0, 0, 0.45));
+      }
+
+      .product-card h2, .why h2 {
+        margin: 0 0 10px;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 28px;
+        line-height: 1;
+      }
+
+      .product-card p, .why li {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.55;
+      }
+
+      .more {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 18px;
+        color: var(--accent-soft);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .why { padding: 25px; cursor: help; }
+      .why ul { padding-left: 18px; margin: 0; }
+      .why li { margin-bottom: 7px; }
+
+      .moon-watermark {
+        position: absolute;
+        right: 28px;
+        bottom: -6px;
+        font-size: 84px;
+        color: rgba(212, 168, 86, 0.08);
+      }
+
+      .benefits {
+        margin: 0 22px 22px;
+        min-height: 96px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 18px;
+        background: rgba(12, 16, 24, 0.8);
+        overflow: hidden;
+      }
+
+      .benefit {
+        display: flex;
+        align-items: center;
+        gap: 17px;
+        padding: 24px 28px;
+        border-right: 1px solid rgba(255, 255, 255, 0.07);
+        transition: background 0.3s ease;
+      }
+
+      .benefit:hover { background: rgba(212, 168, 86, 0.045); }
+      .benefit:last-child { border-right: 0; }
+
+      .benefit img {
+        width: 42px;
+        height: 42px;
+        object-fit: contain;
+        filter: drop-shadow(0 0 12px rgba(212, 168, 86, 0.2));
+      }
+
+      .benefit span {
+        color: rgba(247, 239, 228, 0.74);
+        font-size: 14px;
+        line-height: 1.35;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+        }
+      }
+
+      @media (max-width: 1180px) {
+        header { grid-template-columns: auto auto; }
+        nav { display: none; }
+        .header-actions { justify-content: flex-end; }
+        .hero { grid-template-columns: 1fr; padding: 52px 34px 30px; }
+        .hero::before {
+          background:
+            linear-gradient(90deg, rgba(5, 7, 11, 0.94) 0%, rgba(5, 7, 11, 0.78) 60%, rgba(5, 7, 11, 0.58) 100%),
+            url("https://90f1661d-2ff4-4f29-b07c-0e47453ca691.selstorage.ru/site1070969/723b066d-d9d6-4109-b1f0-ca39f24ce239.png") right center / cover no-repeat;
+        }
+        .eva-stage { min-height: 460px; justify-content: center; }
+        .eva-wrap { width: min(620px, 100%); height: 560px; }
+        .eva-sprite { left: 50%; right: auto; transform: translateX(-50%) translateY(12px) scale(0.985); width: min(470px, 78vw); }
+        .eva-sprite.is-active { transform: translateX(-50%) translateY(0) scale(1); }
+        .eva-sprite.is-leaving { transform: translateX(-50%) translateY(-4px) scale(1.012); }
+        .speech-bubble { right: auto; left: 50%; top: 10px; transform: translateX(-50%) translateY(10px) scale(0.98); }
+        .speech-bubble.is-visible { transform: translateX(-50%) translateY(0) scale(1); }
+        .speech-bubble::after { right: 50%; bottom: -12px; transform: translateX(50%) rotate(45deg); }
+        .products { grid-template-columns: 1fr; margin-top: 0; }
+        .benefits { grid-template-columns: repeat(2, 1fr); }
+        .benefit:nth-child(2) { border-right: 0; }
+        .benefit:nth-child(1), .benefit:nth-child(2) { border-bottom: 1px solid rgba(255, 255, 255, 0.07); }
+      }
+
+      @media (max-width: 720px) {
+        .page { width: min(100% - 18px, 1540px); margin-top: 9px; border-radius: 18px; }
+        header { height: auto; padding: 18px; }
+        .login { min-width: 86px; }
+        .hero { min-height: auto; padding: 40px 20px 24px; }
+        .lead { font-size: 15px; }
+        .features { grid-template-columns: 1fr; }
+        .cta { align-items: stretch; flex-direction: column; }
+        .btn-primary { width: 100%; }
+        .eva-stage { min-height: 470px; }
+        .eva-wrap { min-width: 0; height: 480px; }
+        .eva-sprite { width: min(380px, 92vw); }
+        .speech-bubble { width: min(330px, calc(100vw - 52px)); }
+        .speech-bubble p { font-size: 22px; }
+        .products, .benefits { margin-left: 12px; margin-right: 12px; }
+        .product-card { grid-template-columns: 1fr; }
+        .product-card img { max-width: 190px; justify-self: start; }
+        .benefits { grid-template-columns: 1fr; }
+        .benefit { border-right: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.07); }
+        .benefit:last-child { border-bottom: 0; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="page">
+      <header>
+        <a class="brand" href="#" aria-label="CHB"><img src="https://90f1661d-2ff4-4f29-b07c-0e47453ca691.selstorage.ru/site1070969/2732af6a-991f-42f0-b5d1-832146b7e91c.png" alt="CHB" /></a>
+        </nav>
+        <div class="header-actions">
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="hero-content">
+          <div class="eyebrow">CHB silence in the night city</div>
+          <h1><span>Black</span> — главная дебетовая карта</h1>
+          <p class="lead">
+            Black — главная дебетовая карта с кэшбэком в рублях и процентом на остаток.
+            Универсальна для зарплаты, пособий, пенсий, ежедневных покупок и финансовых задач.
+          </p>
+
+          <div class="black-card-wrap eva-react" data-dialogue="Black любит тишину. Кэшбэк приходит рублями, а условия не прячутся в тумане." data-speaker="Eva о Black">
+            <img src="https://90f1661d-2ff4-4f29-b07c-0e47453ca691.selstorage.ru/site1070969/ba5230fe-1f4e-4106-9e1f-774fb87accbd.png" alt="Дебетовая карта Black" />
+          </div>
+
+          <div class="features" aria-label="Преимущества карты">
+            <div class="feature eva-react" data-dialogue="До 15% кэшбэка — это когда покупка хотя бы немного извиняется за то, что случилась." data-speaker="Eva о кэшбэке">
+              <img src="https://90f1661d-2ff4-4f29-b07c-0e47453ca691.selstorage.ru/site1070969/ca951f0f-f1d7-40d5-85cd-67e777792a60.png" alt="" />
+              <div><strong>До 15%</strong><small>кэшбэк</small></div>
+            </div>
+            <div class="feature eva-react" data-dialogue="Процент на остаток — редкий случай, когда деньги спокойно лежат и всё равно работают." data-speaker="Eva об остатке">
+              <img src="https://90f1661d-2ff4-4f29-b07c-0e47453ca691.selstorage.ru/site1070969/574fd437-4244-4d90-871e-aab26c73c835.png" alt="" />
+              <div><strong>До 6%</strong><small>на остаток</small></div>
+            </div>
+            <div class="feature eva-react" data-dialogue="Бесплатное обслуживание. Без ритуалов, мелкого шрифта и внезапных жертвоприношений." data-speaker="Eva об условиях">
+              <img src="https://90f1661d-2ff4-4f29-b07c-0e47453ca691.selstorage.ru/site1070969/77649d27-e6a8-49e2-af1d-556f78c51c87.png" alt="" />
+              <div><strong>Бесплатно</strong><small>обслуживание</small></div>
+            </div>
+          </div>
+
+          <div class="cta">
+            <a class="btn-primary eva-react" href="#" data-dialogue="Подробности — хорошая привычка. Особенно когда речь о деньгах." data-speaker="Eva">Подробнее о карте <span>→</span></a>
+            <a class="link-secondary eva-react" href="#" data-dialogue="Подробности — хорошая привычка. Особенно когда речь о деньгах." data-speaker="Eva">Подробнее о карте ›</a>
+          </div>
+        </div>
+
+        <aside class="eva-stage" aria-label="Ева — интерактивный маскот страницы">
+          <div class="eva-wrap">
+            <div class="speech-bubble" id="speechBubble" aria-live="polite">
+              <div class="speaker" id="bubbleSpeaker">Eva</div>
+              <p id="bubbleText">Чай почти готов. А вы пока осмотритесь.</p>
+            </div>
+            <img class="eva-sprite is-active" id="evaSpriteA" src="https://90f1661d-2ff4-4f29-b07c-0e47453ca691.selstorage.ru/site1070969/45b76b3c-b395-4add-89e2-48b99f69a73a.png" alt="Ева, маскот CHB" decoding="async" fetchpriority="high" />
+            <img class="eva-sprite" id="evaSpriteB" src="https://90f1661d-2ff4-4f29-b07c-0e47453ca691.selstorage.ru/site1070969/45b76b3c-b395-4add-89e2-48b99f69a73a.png" alt="" aria-hidden="true" decoding="async" />
+          </div>
+        </aside>
+      </section>
+
+      <section class="products" id="cards">
+        <article class="product-card eva-react" id="mobile" data-dialogue="Т‑Мобайл. Связь должна быть спокойной: без пропавших гигабайт и странных ночных списаний." data-speaker="Eva о сим-карте">
+          <img src="https://90f1661d-2ff4-4f29-b07c-0e47453ca691.selstorage.ru/site1070969/9a6ea8c1-582c-4f70-bad5-6ef57c661431.png" alt="Сим-карта Т-Мобайл" />
+          <div>
+            <h2>Т‑Мобайл</h2>
+            <p>Безопасный мобильный оператор. Выгодные тарифы, пакет ГБ, минут и безлимитные сервисы.</p>
+            <a class="more" href="#">Подробнее <span>→</span></a>
+          </div>
+        </article>
+
+        <article class="product-card eva-react" id="credit" data-dialogue="Platinum — карта для тех, кто умеет считать сроки. 120 дней — это много, если не забыть дату." data-speaker="Eva о Platinum">
+          <img src="https://90f1661d-2ff4-4f29-b07c-0e47453ca691.selstorage.ru/site1070969/43804d65-5759-4c97-b2f3-9bba24b73f69.png" alt="Кредитная карта Platinum" />
+          <div>
+            <h2>Кредитная карта Platinum</h2>
+            <p>До 120 дней без процентов на покупки. Кэшбэк рублями и милями. Решение за 2 минуты.</p>
+            <a class="more" href="#">Подробнее <span>→</span></a>
+          </div>
+        </article>
+
+        <article class="why eva-react" data-dialogue="Почему CHB? Потому что прозрачные условия лучше, чем красивые обещания в темноте." data-speaker="Eva о CHB">
+          <h2></h2>
+          <ul>
+          </ul>
+          <div class="moon-watermark">☾</div>
+        </article>
+      </section>
+
+      <section class="benefits">
+        <div class="benefit eva-react" data-dialogue="Защита средств — это не украшение. Это дверь, которую лучше держать закрытой." data-speaker="Eva о защите">
+          <img src="https://90f1661d-2ff4-4f29-b07c-0e47453ca691.selstorage.ru/site1070969/77649d27-e6a8-49e2-af1d-556f78c51c87.png" alt="" />
+          <span>Надёжная защита ваших средств</span>
+        </div>
+        <div class="benefit eva-react" data-dialogue="Честные условия звучат скучно. Поэтому они и хороши." data-speaker="Eva об условиях">
+          <img src="https://90f1661d-2ff4-4f29-b07c-0e47453ca691.selstorage.ru/site1070969/574fd437-4244-4d90-871e-aab26c73c835.png" alt="" />
+          <span>Честные условия и прозрачные тарифы</span>
+        </div>
+        <div class="benefit eva-react" data-dialogue="Поддержка 24/7. Даже если вопрос проснулся раньше вас." data-speaker="Eva о поддержке">
+          <img src="https://90f1661d-2ff4-4f29-b07c-0e47453ca691.selstorage.ru/site1070969/49684f06-3650-4154-95b8-1d6ef710dfeb.png" alt="" />
+          <span>Поддержка 24/7 в приложении и онлайн</span>
+        </div>
+        <div class="benefit eva-react" data-dialogue="Лучший сервис — это когда пользователь не вынужден разбираться в хаосе один." data-speaker="Eva о сервисе">
+          <img src="https://90f1661d-2ff4-4f29-b07c-0e47453ca691.selstorage.ru/site1070969/ca951f0f-f1d7-40d5-85cd-67e777792a60.png" alt="" />
+          <span>Лучший сервис для ваших задач</span>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      (() => {
+        const spriteA = document.getElementById("evaSpriteA");
+        const spriteB = document.getElementById("evaSpriteB");
+        const bubble = document.getElementById("speechBubble");
+        const bubbleText = document.getElementById("bubbleText");
+        const bubbleSpeaker = document.getElementById("bubbleSpeaker");
+        const reactiveItems = document.querySelectorAll(".eva-react");
+
+        const eva = {
+          pouring: "https://90f1661d-2ff4-4f29-b07c-0e47453ca691.selstorage.ru/site1070969/45b76b3c-b395-4add-89e2-48b99f69a73a.png",
+          surprised: "https://90f1661d-2ff4-4f29-b07c-0e47453ca691.selstorage.ru/site1070969/e4540d0c-3d57-40c9-a84a-470962e0e0b9.png",
+          default: "https://90f1661d-2ff4-4f29-b07c-0e47453ca691.selstorage.ru/site1070969/352d9ed8-ed96-4d50-9998-80ee09a343cb.png",
+          speak: "https://90f1661d-2ff4-4f29-b07c-0e47453ca691.selstorage.ru/site1070969/1ead777b-2cf0-47fa-a96b-505e34946b2a.png",
+          boring: "https://90f1661d-2ff4-4f29-b07c-0e47453ca691.selstorage.ru/site1070969/a9d4ad36-036b-47d6-b731-d02bb520c172.png"
+        };
+
+        const STORAGE_KEY = "chb_eva_memory_v1";
+        const IDLE_DELAY = 9000;
+        const SPRITE_FADE_MS = 560;
+        const spriteCache = new Map();
+        const introTimers = new Set();
+        let activeSprite = spriteA;
+        let inactiveSprite = spriteB;
+        let currentSprite = eva.pouring;
+        let pendingSprite = null;
+        let transitionTimer = null;
+        let hideTimer = null;
+        let textTimer = null;
+        let idleTimer = null;
+        let memorySaveTimer = null;
+        let introActive = true;
+        let isReacting = false;
+        let isIdle = false;
+
+        const defaultMemory = {
+          visits: 0,
+          firstSeenAt: null,
+          lastSeenAt: null,
+          lastDialogue: "",
+          lastSpeaker: "Eva",
+          lastProductId: "",
+          lastProductLabel: "",
+          idleCount: 0,
+          interactions: 0
+        };
+
+        function readMemory() {
+          try {
+            const raw = window.localStorage.getItem(STORAGE_KEY);
+            if (!raw) return { ...defaultMemory };
+            return { ...defaultMemory, ...JSON.parse(raw) };
+          } catch (error) {
+            console.warn("Не удалось прочитать память Евы:", error);
+            return { ...defaultMemory };
+          }
+        }
+
+        const memory = readMemory();
+        const isReturningUser = memory.visits > 0;
+        memory.visits += 1;
+        memory.firstSeenAt ||= new Date().toISOString();
+        memory.lastSeenAt = new Date().toISOString();
+
+        function saveMemory(immediate = false) {
+          const commit = () => {
+            try {
+              memory.lastSeenAt = new Date().toISOString();
+              window.localStorage.setItem(STORAGE_KEY, JSON.stringify(memory));
+            } catch (error) {
+              console.warn("Не удалось сохранить память Евы:", error);
+            }
+          };
+
+          window.clearTimeout(memorySaveTimer);
+          if (immediate) {
+            commit();
+          } else {
+            memorySaveTimer = window.setTimeout(commit, 220);
+          }
+        }
+
+        function rememberDialogue(text, speaker = "Eva", item = null) {
+          memory.lastDialogue = text || "";
+          memory.lastSpeaker = speaker || "Eva";
+          if (item) {
+            memory.lastProductId = item.id || item.getAttribute("aria-label") || "";
+            memory.lastProductLabel =
+              item.querySelector("h2")?.textContent?.trim() ||
+              item.querySelector("strong")?.textContent?.trim() ||
+              item.dataset.speaker ||
+              "";
+          }
+          saveMemory();
+        }
+
+        function getReturnPhrase() {
+          if (!isReturningUser) {
+            return "Одну секунду. Чай важнее любой презентации.";
+          }
+
+          if (memory.lastProductLabel) {
+            return `С возвращением. В прошлый раз вы задержались на «${memory.lastProductLabel}». Продолжим?`;
+          }
+
+          if (memory.lastDialogue) {
+            return "С возвращением. Я вас помню. Чай уже почти готов.";
+          }
+
+          return "С возвращением. Я не забыла этот визит.";
+        }
+
+        saveMemory(true);
+
+        function addIntroTimer(callback, delay) {
+          const id = window.setTimeout(() => {
+            introTimers.delete(id);
+            callback();
+          }, delay);
+          introTimers.add(id);
+          return id;
+        }
+
+        function clearIntroTimers() {
+          introTimers.forEach((id) => window.clearTimeout(id));
+          introTimers.clear();
+          introActive = false;
+        }
+
+        function preloadSprite(src) {
+          if (!src) return Promise.resolve(false);
+          if (spriteCache.has(src)) return spriteCache.get(src);
+
+          const promise = new Promise((resolve) => {
+            const img = new Image();
+            img.decoding = "async";
+            img.onload = () => resolve(true);
+            img.onerror = () => {
+              console.warn("Не удалось загрузить спрайт:", src);
+              resolve(false);
+            };
+            img.src = src;
+          });
+
+          spriteCache.set(src, promise);
+          return promise;
+        }
+
+        function preloadAllSprites() {
+          Object.values(eva).forEach(preloadSprite);
+        }
+
+        async function setSprite(src) {
+          if (!src || src === currentSprite || src === pendingSprite) return;
+
+          pendingSprite = src;
+          const loaded = await preloadSprite(src);
+          if (pendingSprite !== src) return;
+
+          if (!loaded) {
+            pendingSprite = null;
+            return;
+          }
+
+          window.clearTimeout(transitionTimer);
+
+          inactiveSprite.src = src;
+          inactiveSprite.classList.remove("is-leaving");
+
+          window.requestAnimationFrame(() => {
+            activeSprite.classList.remove("is-active");
+            activeSprite.classList.add("is-leaving");
+            inactiveSprite.classList.add("is-active");
+          });
+
+          transitionTimer = window.setTimeout(() => {
+            activeSprite.classList.remove("is-leaving");
+            const previousActive = activeSprite;
+            activeSprite = inactiveSprite;
+            inactiveSprite = previousActive;
+            currentSprite = src;
+            pendingSprite = null;
+          }, SPRITE_FADE_MS);
+        }
+
+        function showBubble(text, speaker = "Eva", options = {}) {
+          window.clearTimeout(hideTimer);
+          window.clearTimeout(textTimer);
+
+          bubble.classList.add("is-visible");
+          bubble.classList.add("is-soft-changing", "is-text-changing");
+
+          textTimer = window.setTimeout(() => {
+            bubbleText.textContent = text;
+            bubbleSpeaker.textContent = speaker;
+            bubble.classList.remove("is-text-changing");
+          }, 120);
+
+          window.setTimeout(() => {
+            bubble.classList.remove("is-soft-changing");
+          }, 260);
+
+          if (!options.skipMemory) {
+            rememberDialogue(text, speaker, options.item || null);
+          }
+        }
+
+        function hideBubble(delay = 260) {
+          window.clearTimeout(hideTimer);
+          hideTimer = window.setTimeout(() => {
+            bubble.classList.remove("is-visible");
+          }, delay);
+        }
+
+        function clearIdleTimer() {
+          window.clearTimeout(idleTimer);
+          idleTimer = null;
+        }
+
+        function startIdleTimer() {
+          clearIdleTimer();
+          if (introActive || isReacting) return;
+
+          idleTimer = window.setTimeout(() => {
+            if (introActive || isReacting) return;
+            isIdle = true;
+            memory.idleCount += 1;
+            setSprite(eva.boring);
+            showBubble("я скучаю", "Eva");
+          }, IDLE_DELAY);
+        }
+
+        function noteUserActivity() {
+          if (introActive) return;
+
+          if (isIdle && !isReacting) {
+            isIdle = false;
+            setSprite(eva.default);
+            hideBubble(900);
+          }
+
+          startIdleTimer();
+        }
+
+        function setEvaReaction(item) {
+          clearIntroTimers();
+          clearIdleTimer();
+          isIdle = false;
+          isReacting = true;
+          memory.interactions += 1;
+          setSprite(eva.speak);
+          showBubble(item.dataset.dialogue || "Я здесь. Просто наблюдаю.", item.dataset.speaker || "Eva", { item });
+        }
+
+        function resetEva() {
+          if (introActive) return;
+          isReacting = false;
+          isIdle = false;
+          setSprite(eva.default);
+          hideBubble(320);
+          startIdleTimer();
+        }
+
+        async function playIntro() {
+          preloadAllSprites();
+
+          await preloadSprite(eva.pouring);
+          spriteA.src = eva.pouring;
+          spriteB.src = eva.pouring;
+          currentSprite = eva.pouring;
+
+          showBubble(getReturnPhrase(), "Eva");
+
+          addIntroTimer(() => {
+            setSprite(eva.surprised);
+            showBubble(
+              isReturningUser
+                ? "Хорошо. Я открыла страницу с того же настроения. Осмотритесь ещё раз."
+                : "О. Вы уже здесь? Тогда посмотрим, что вам подойдёт.",
+              "Eva"
+            );
+          }, 1550);
+
+          addIntroTimer(() => {
+            introActive = false;
+            setSprite(eva.default);
+            hideBubble(1200);
+            startIdleTimer();
+          }, 3450);
+        }
+
+        reactiveItems.forEach((item) => {
+          item.addEventListener("pointerenter", () => setEvaReaction(item));
+          item.addEventListener("focusin", () => setEvaReaction(item));
+          item.addEventListener("pointerleave", resetEva);
+          item.addEventListener("focusout", resetEva);
+        });
+
+        ["pointermove", "keydown", "wheel", "scroll", "touchstart"].forEach((eventName) => {
+          window.addEventListener(eventName, noteUserActivity, { passive: true });
+        });
+
+        window.addEventListener("beforeunload", () => saveMemory(true));
+
+        window.evaMemory = {
+          read: () => ({ ...memory }),
+          clear: () => {
+            try {
+              window.localStorage.removeItem(STORAGE_KEY);
+              Object.assign(memory, { ...defaultMemory });
+              console.info("Память Евы очищена.");
+            } catch (error) {
+              console.warn("Не удалось очистить память Евы:", error);
+            }
+          }
+        };
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", playIntro, { once: true });
+        } else {
+          playIntro();
+        }
+      })();
+    </script>
+  </body>
+</html>
