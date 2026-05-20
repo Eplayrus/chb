@@ -685,8 +685,6 @@
     }
   }
 
-  /* Важный промежуточный режим для конструкторов/iframe.
-     На этой ширине старый макет уже начинал сжиматься, но ещё не уходил в мобильную раскладку. */
   @media (max-width: 1320px) {
     .page {
       width: min(100%, calc(100vw - 24px));
@@ -921,8 +919,11 @@
     }
   }
 
-  /* ===== Smartphone fix: Ева не должна перекрывать облако и карточки ===== */
   @media (max-width: 560px) {
+    body {
+      padding-bottom: 120px;
+    }
+
     .page {
       width: 100%;
       margin: 0;
@@ -975,66 +976,108 @@
     }
 
     .eva-stage {
-      order: 2;
-      min-height: 560px;
-      margin-top: 20px;
-      align-items: flex-start;
-      overflow: visible;
-      contain: none;
+      position: fixed !important;
+      right: 10px !important;
+      bottom: 12px !important;
+      left: auto !important;
+      top: auto !important;
+      z-index: 999 !important;
+      width: 150px !important;
+      height: 270px !important;
+      min-height: 0 !important;
+      margin: 0 !important;
+      display: block !important;
+      overflow: visible !important;
+      pointer-events: auto !important;
+      contain: none !important;
     }
 
     .eva-wrap {
-      height: 560px;
-      max-width: 100%;
-      overflow: visible;
+      position: absolute !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      left: auto !important;
+      top: auto !important;
+      width: 150px !important;
+      max-width: 150px !important;
+      height: 270px !important;
+      margin: 0 !important;
+      overflow: visible !important;
     }
 
-    .speech-bubble {
-      top: 0;
-      left: 50%;
-      right: auto;
-      z-index: 80;
-      width: min(330px, calc(100vw - 48px));
-      min-width: 0;
-      transform: translateX(-50%) translateY(10px) scale(0.98);
-    }
-
-    .speech-bubble.is-visible {
-      transform: translateX(-50%) translateY(0) scale(1);
-    }
-
-    .speech-bubble.is-soft-changing {
-      transform: translateX(-50%) translateY(-2px) scale(1.01);
-    }
-
-    .speech-bubble::after {
-      right: 50%;
-      bottom: -12px;
-      transform: translateX(50%) rotate(45deg);
-    }
-
-    .speech-bubble p {
-      font-size: 21px;
-      line-height: 1.18;
+    .eva-sprite,
+    .eva-sprite.is-active,
+    .eva-sprite.is-leaving {
+      position: absolute !important;
+      left: 50% !important;
+      right: auto !important;
+      top: auto !important;
+      bottom: 0 !important;
+      z-index: 20 !important;
+      width: 145px !important;
+      max-width: 145px !important;
+      max-height: 260px !important;
+      object-fit: contain !important;
+      object-position: bottom center !important;
+      transform-origin: bottom center !important;
+      pointer-events: auto !important;
+      cursor: pointer !important;
     }
 
     .eva-sprite {
-      left: 50%;
-      right: auto;
-      bottom: 0;
-      z-index: 20;
-      width: min(330px, 76vw);
-      max-height: 520px;
-      object-fit: contain;
-      transform: translateX(-50%) translateY(92px) scale(0.985);
+      transform: translateX(-50%) translateY(10px) scale(0.985) !important;
     }
 
     .eva-sprite.is-active {
-      transform: translateX(-50%) translateY(92px) scale(1);
+      opacity: 1 !important;
+      transform: translateX(-50%) translateY(0) scale(1) !important;
     }
 
     .eva-sprite.is-leaving {
-      transform: translateX(-50%) translateY(88px) scale(1.012);
+      opacity: 0 !important;
+      transform: translateX(-50%) translateY(-4px) scale(1.012) !important;
+    }
+
+    .speech-bubble {
+      position: absolute !important;
+      left: auto !important;
+      right: 138px !important;
+      top: auto !important;
+      bottom: 132px !important;
+      z-index: 80 !important;
+      width: min(250px, calc(100vw - 180px)) !important;
+      min-width: 190px !important;
+      padding: 13px 15px 14px !important;
+      border-radius: 16px 16px 4px 16px !important;
+      transform: translateY(10px) scale(0.98) !important;
+      pointer-events: none !important;
+    }
+
+    .speech-bubble.is-visible {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: translateY(0) scale(1) !important;
+    }
+
+    .speech-bubble.is-soft-changing {
+      transform: translateY(-2px) scale(1.01) !important;
+    }
+
+    .speech-bubble::after {
+      right: -11px !important;
+      left: auto !important;
+      bottom: 22px !important;
+      transform: rotate(-45deg) !important;
+    }
+
+    .speech-bubble .speaker {
+      font-size: 10px !important;
+      margin-bottom: 5px !important;
+    }
+
+    .speech-bubble p {
+      font-size: 18px !important;
+      line-height: 1.15 !important;
     }
 
     .products {
@@ -1090,7 +1133,6 @@
     <main class="page">
       <header>
         <a class="brand" href="#" aria-label="CHB"><img src="https://90f1661d-2ff4-4f29-b07c-0e47453ca691.selstorage.ru/site1070969/2732af6a-991f-42f0-b5d1-832146b7e91c.png" alt="CHB" /></a>
-        </nav>
         <div class="header-actions">
         </div>
       </header>
@@ -1196,6 +1238,7 @@
         const bubbleText = document.getElementById("bubbleText");
         const bubbleSpeaker = document.getElementById("bubbleSpeaker");
         const reactiveItems = document.querySelectorAll(".eva-react");
+        const isMobileEva = window.matchMedia("(hover: none), (pointer: coarse), (max-width: 560px)").matches;
 
         const eva = {
           pouring: "https://90f1661d-2ff4-4f29-b07c-0e47453ca691.selstorage.ru/site1070969/45b76b3c-b395-4add-89e2-48b99f69a73a.png",
@@ -1222,6 +1265,8 @@
         let introActive = true;
         let isReacting = false;
         let isIdle = false;
+        let lastMobileCommentKey = "";
+        let mobileCommentLockedUntil = 0;
 
         const defaultMemory = {
           visits: 0,
@@ -1416,7 +1461,7 @@
             isIdle = true;
             memory.idleCount += 1;
             setSprite(eva.boring);
-            showBubble("я скучаю", "Eva");
+            showBubble(isMobileEva ? "Я рядом. Листайте страницу или коснитесь карточки — я поясню главное." : "я скучаю", "Eva");
           }, IDLE_DELAY);
         }
 
@@ -1432,14 +1477,63 @@
           startIdleTimer();
         }
 
-        function setEvaReaction(item) {
+        function getEvaDialogue(item) {
+          if (!isMobileEva) {
+            return item.dataset.dialogue || "Я здесь. Просто наблюдаю.";
+          }
+
+          if (item.classList.contains("black-card-wrap")) {
+            return "Black — карта для повседневных трат. Кэшбэк рублями, остаток работает, условия без тумана.";
+          }
+
+          if (item.classList.contains("btn-primary") || item.classList.contains("link-secondary")) {
+            return "Нажмите, если хотите перейти к подробностям. Условия лучше читать заранее — особенно когда речь о деньгах.";
+          }
+
+          if (item.id === "mobile") {
+            return "Т‑Мобайл — связь, тарифы и гигабайты. Главное, чтобы интернет не исчезал в самый странный момент.";
+          }
+
+          if (item.id === "credit") {
+            return "Platinum — кредитка с льготным периодом. Удобно, если помнить даты и не играть с долгом в азарт.";
+          }
+
+          if (item.classList.contains("feature")) {
+            const title = item.querySelector("strong")?.textContent?.trim() || "условие";
+            const note = item.querySelector("small")?.textContent?.trim() || "";
+            return `${title} ${note}. Это один из главных пунктов, который стоит проверить перед оформлением.`;
+          }
+
+          if (item.classList.contains("benefit")) {
+            const text = item.querySelector("span")?.textContent?.trim();
+            return text ? `${text}. Хорошая страница должна объяснять это без лишней магии.` : "Это один из аргументов в пользу продукта.";
+          }
+
+          if (item.classList.contains("why")) {
+            return "Здесь можно объяснить, почему CHB ведёт к продуктам: спокойно, честно и без копирования официального сайта.";
+          }
+
+          return item.dataset.dialogue || "Коснитесь карточки — я объясню, что здесь важно.";
+        }
+
+        function setEvaReaction(item, options = {}) {
           clearIntroTimers();
           clearIdleTimer();
           isIdle = false;
           isReacting = true;
           memory.interactions += 1;
           setSprite(eva.speak);
-          showBubble(item.dataset.dialogue || "Я здесь. Просто наблюдаю.", item.dataset.speaker || "Eva", { item });
+          showBubble(getEvaDialogue(item), item.dataset.speaker || "Eva", { item });
+
+          if (isMobileEva && options.autoHide !== false) {
+            window.clearTimeout(hideTimer);
+            hideTimer = window.setTimeout(() => {
+              isReacting = false;
+              setSprite(eva.default);
+              hideBubble(0);
+              startIdleTimer();
+            }, 4300);
+          }
         }
 
         function resetEva() {
@@ -1479,12 +1573,86 @@
           }, 3450);
         }
 
-        reactiveItems.forEach((item) => {
-          item.addEventListener("pointerenter", () => setEvaReaction(item));
-          item.addEventListener("focusin", () => setEvaReaction(item));
-          item.addEventListener("pointerleave", resetEva);
-          item.addEventListener("focusout", resetEva);
-        });
+        function setupDesktopEva() {
+          reactiveItems.forEach((item) => {
+            item.addEventListener("pointerenter", () => setEvaReaction(item));
+            item.addEventListener("focusin", () => setEvaReaction(item));
+            item.addEventListener("pointerleave", resetEva);
+            item.addEventListener("focusout", resetEva);
+          });
+        }
+
+        function setupMobileEva() {
+          reactiveItems.forEach((item) => {
+            item.addEventListener("click", (event) => {
+              if (item.getAttribute("href") === "#") {
+                event.preventDefault();
+              }
+
+              setEvaReaction(item);
+            });
+          });
+
+          [spriteA, spriteB].forEach((sprite) => {
+            sprite.addEventListener("click", () => {
+              clearIntroTimers();
+              isIdle = false;
+              isReacting = true;
+              setSprite(eva.speak);
+              showBubble("На телефоне мыши нет. Просто листайте страницу или коснитесь карточки — я буду пояснять главное.", "Eva");
+
+              window.clearTimeout(hideTimer);
+              hideTimer = window.setTimeout(() => {
+                isReacting = false;
+                setSprite(eva.default);
+                hideBubble(0);
+                startIdleTimer();
+              }, 4200);
+            });
+          });
+
+          if (!("IntersectionObserver" in window)) return;
+
+          const observer = new IntersectionObserver((entries) => {
+            const now = Date.now();
+            if (introActive || isReacting || now < mobileCommentLockedUntil) return;
+
+            const visible = entries
+              .filter((entry) => entry.isIntersecting)
+              .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+            if (!visible) return;
+
+            const item = visible.target;
+            const key = item.id || item.dataset.speaker || item.className || item.textContent.slice(0, 30);
+
+            if (key === lastMobileCommentKey) return;
+
+            lastMobileCommentKey = key;
+            mobileCommentLockedUntil = now + 2600;
+
+            setSprite(eva.speak);
+            showBubble(getEvaDialogue(item), item.dataset.speaker || "Eva", { item });
+
+            window.clearTimeout(hideTimer);
+            hideTimer = window.setTimeout(() => {
+              setSprite(eva.default);
+              hideBubble(0);
+              startIdleTimer();
+            }, 3600);
+          }, {
+            threshold: 0.55,
+            rootMargin: "-18% 0px -28% 0px"
+          });
+
+          reactiveItems.forEach((item) => observer.observe(item));
+        }
+
+        if (isMobileEva) {
+          setupMobileEva();
+        } else {
+          setupDesktopEva();
+        }
 
         ["pointermove", "keydown", "wheel", "scroll", "touchstart"].forEach((eventName) => {
           window.addEventListener(eventName, noteUserActivity, { passive: true });
