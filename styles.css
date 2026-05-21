@@ -1111,7 +1111,7 @@
       margin: 0 !important;
       display: block !important;
       overflow: visible !important;
-      pointer-events: none !important;
+      pointer-events: auto !important;
       contain: none !important;
     }
 
@@ -1143,6 +1143,8 @@
       object-fit: contain !important;
       object-position: bottom center !important;
       transform-origin: bottom center !important;
+      pointer-events: auto !important;
+      cursor: pointer !important;
     }
 
     .eva-sprite {
