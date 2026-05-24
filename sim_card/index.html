@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CHB — сим-карта Т-Мобайл</title>
+  <meta name="description" content="Т-Мобайл: безопасный мобильный оператор, конструктор тарифа, Pro-бонусы, eSIM, защита от спама, определитель номера и бесплатная доставка сим-карты." />
+  <link rel="icon" type="image/png" href="../favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="sim-page">
+    <header class="topbar">
+      <a class="brand" href="../index.html" aria-label="CHB"><img src="../loogo.png" alt="CHB" /></a>
+      <nav class="nav" aria-label="Навигация">
+        <a href="#about">О сим-карте</a>
+        <a href="#benefits">Преимущества</a>
+        <a href="#tariffs">Тарифы</a>
+        <a href="#how">Как получить</a>
+        <a href="#important">Важно</a>
+      </nav>
+      <a class="top-action eva-react" href="#apply" data-dialogue="Сначала посмотри условия, потом оформляй. Связь должна быть предсказуемой, а не с сюрпризами." data-speaker="Eva">Оформить</a>
+    </header>
+
+    <section class="hero" id="about">
+      <div class="hero-bg"></div>
+
+      <div class="hero-content">
+        <p class="eyebrow">CHB silence in the night city</p>
+        <h1><span>Сим-карта</span> — связь в 2 раза дешевле</h1>
+        <p class="lead">Подключите Т-Мобайл с выгодными условиями, бесплатными минутами, гибкими пакетами ГБ и дополнительными сервисами безопасности. Здесь нет привычной жёсткой сетки тарифов — собирайте связь под себя.</p>
+
+        <div class="hero-actions" id="apply">
+          <a class="btn btn-primary eva-react" href="https://www.tbank.ru/mobile-operator/" target="_blank" rel="noopener" data-dialogue="Оформление ведёт на страницу Т-Банка. Лучше заранее понять, сколько минут и интернета тебе реально нужно." data-speaker="Eva о заявке">Заказать сим-карту</a>
+          <a class="btn btn-secondary eva-react" href="#tariffs" data-dialogue="Да, тарифы сначала. Это скучнее кнопки оформления, зато полезнее для кошелька." data-speaker="Eva">Смотреть тарифы</a>
+        </div>
+
+        <div class="trust-strip eva-react" data-dialogue="Сильная сторона Т-Мобайла — не только цена, но и антиспам: мошеннические звонки лучше давить на входе." data-speaker="Eva о безопасности">
+          <span>TelecomDaily</span>
+          <p>Т‑Мобайл — самый безопасный мобильный оператор по версии TelecomDaily.</p>
+          <a href="https://telecomdaily.ru/news/2022/02/10/telecomdaily-kto-iz-operatorov-effektivnee-zashchishchaet-ot-telefonnyh-moshennikov" target="_blank" rel="noopener">Источник →</a>
+        </div>
+      </div>
+
+      <div class="hero-product eva-react" data-dialogue="Сим-карта, eSIM, телефон и бонусы Pro — это главный визуальный блок. Он должен сразу продавать идею: связь + безопасность + выгода." data-speaker="Eva о витрине">
+        <img class="product-img" src="img/main_phone_N_sim.png" alt="Сим-карта Т-Мобайл, телефон и бонусы Pro" />
+        <div class="product-glow"></div>
+      </div>
+
+      <aside class="eva-zone" aria-label="Ева — помощник страницы">
+        <div class="bubble" id="bubble" aria-live="polite">
+          <div class="bubble-speaker" id="bubbleSpeaker">Eva</div>
+          <p id="bubbleText">Я рядом. Посмотрим связь без тумана.</p>
+        </div>
+        <img class="eva-sprite is-active" id="evaSprite" src="../sp/eva_standing_cup.png" alt="Ева — фирменный маскот CHB" />
+      </aside>
+    </section>
+
+    <section class="benefits" id="benefits">
+      <div class="section-head">
+        <p class="eyebrow">Преимущества</p>
+        <h2>Что даёт сим-карта</h2>
+      </div>
+
+      <div class="benefit-grid">
+        <article class="benefit-card eva-react" data-dialogue="Pro здесь выглядит вкусно: каждый месяц 1200 минут бесплатно и скидка 30% на интернет." data-speaker="Eva о Pro">
+          <img src="img/sim.png" alt="" />
+          <h3>Выгодно с Pro</h3>
+          <p>Каждый месяц 1 200 минут бесплатно и скидка на интернет 30% с подпиской Pro от Т‑Банка.</p>
+        </article>
+
+        <article class="benefit-card eva-react" data-dialogue="Нет тарифов в старом смысле. Собираешь пакет минут, гигабайты и безлимитные сервисы под себя." data-speaker="Eva о тарифе">
+          <img src="img/wallet.png" alt="" />
+          <h3>Соберите тариф</h3>
+          <p>Выберите пакет минут, пакет ГБ или безлимитный доступ к нужным сервисам.</p>
+        </article>
+
+        <article class="benefit-card eva-react" data-dialogue="Безлимитные соцсети, музыка, видео и мессенджеры — нормальная штука, если телефон постоянно в работе." data-speaker="Eva о сервисах">
+          <img src="img/phone.png" alt="" />
+          <h3>Для любых целей</h3>
+          <p>Безлимитные соцсети, музыка, видео, мессенджеры и удобные пакеты для повседневной связи.</p>
+        </article>
+
+        <article class="benefit-card eva-react" data-dialogue="eSIM удобна тем, что номер можно подключить онлайн и не ждать пластик, если телефон поддерживает технологию." data-speaker="Eva об eSIM">
+          <img src="img/e_sim.png" alt="" />
+          <h3>Удобная eSIM</h3>
+          <p>Подключите eSIM и управляйте номером онлайн. Доставка обычной сим-карты тоже бесплатная.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="tariffs" id="tariffs">
+      <div class="section-head">
+        <p class="eyebrow">Тарифы</p>
+        <h2>Соберите связь под себя</h2>
+      </div>
+
+      <div class="tariff-panel eva-react" data-dialogue="Хороший тариф — это не самый большой пакет, а тот, где не переплачиваешь за лишнее." data-speaker="Eva о тарифах">
+        <div class="tariff-copy">
+          <h3>Без скрытых услуг и подписок</h3>
+          <p>Вы сами выбираете минуты, интернет и безлимитные сервисы. Условия понятные: без навязанных опций, внезапных подписок и лишнего шума.</p>
+        </div>
+        <div class="tariff-list">
+          <div><strong>1 200</strong><span>минут бесплатно каждый месяц с Pro</span></div>
+          <div><strong>−30%</strong><span>скидка на интернет с подпиской Pro</span></div>
+          <div><strong>0 ₽</strong><span>доставка сим-карты и eSIM</span></div>
+          <div><strong>24/7</strong><span>управление номером онлайн</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="security" id="important">
+      <div class="section-head">
+        <p class="eyebrow">Важно</p>
+        <h2>Безопасность и полезные сервисы</h2>
+      </div>
+
+      <div class="security-grid">
+        <article class="security-card eva-react" data-dialogue="Спам и мошенники — это не мелочь. Иногда один заблокированный звонок экономит больше, чем весь тариф." data-speaker="Eva о защите">
+          <span class="icon-mark">☾</span>
+          <h3>Защита от спама</h3>
+          <p>Заблокируем звонки мошенников и поможем отсечь лишний шум.</p>
+        </article>
+        <article class="security-card eva-react" data-dialogue="Определитель номера заранее показывает, кто звонит: курьер, спамер или кто-то подозрительный." data-speaker="Eva об определителе">
+          <span class="icon-mark">ID</span>
+          <h3>Определитель номера</h3>
+          <p>Подключите и заранее узнавайте, кто звонит: возможно, мошенники, спамеры или курьер с заказом.</p>
+        </article>
+        <article class="security-card eva-react" data-dialogue="Секретарь полезен, если ты не хочешь ловить каждый пропущенный звонок руками." data-speaker="Eva о секретаре">
+          <span class="icon-mark">↗</span>
+          <h3>Секретарь</h3>
+          <p>Ответит на пропущенные звонки, когда вы не можете взять трубку.</p>
+        </article>
+        <article class="security-card eva-react" data-dialogue="Запись звонков должна быть под твоим контролем. Здесь доступ к записям только у владельца." data-speaker="Eva о записи">
+          <span class="icon-mark">REC</span>
+          <h3>Запись звонков</h3>
+          <p>Звонки запишутся автоматически, доступ к записям только у вас.</p>
+        </article>
+        <article class="security-card eva-react" data-dialogue="Второй номер — хорошая прослойка для сайтов, магазинов и людей, которым не хочется отдавать основной номер." data-speaker="Eva о номере">
+          <span class="icon-mark">+1</span>
+          <h3>Виртуальный номер</h3>
+          <p>Используйте второй номер на одной симке для регистраций на сайтах, в магазинах или для посторонних людей.</p>
+        </article>
+        <article class="security-card eva-react" data-dialogue="Блокировка рекламы — это не магия, но жить с телефоном становится заметно спокойнее." data-speaker="Eva о рекламе">
+          <span class="icon-mark">AD</span>
+          <h3>Блокировка рекламы</h3>
+          <p>Заблокируйте назойливую рекламу в браузерах, приложениях и играх.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="how" id="how">
+      <div class="section-head">
+        <p class="eyebrow">Как получить</p>
+        <h2>Как получить подарок</h2>
+      </div>
+
+      <div class="steps">
+        <article class="step-card eva-react" data-dialogue="Первый шаг простой: оставляешь заявку. Главное — не потерять номер телефона в процессе." data-speaker="Eva — шаг 1">
+          <img src="img/one.png" alt="1" />
+          <div><h3>Закажите сим-карту</h3><p>Оставьте заявку на сайте.</p></div>
+        </article>
+        <article class="step-card eva-react" data-dialogue="После получения — активируй номер и следуй инструкции. Не надо гадать, просто иди по шагам." data-speaker="Eva — шаг 2">
+          <img src="img/two.png" alt="2" />
+          <div><h3>Активируйте номер</h3><p>Следуйте инструкции после получения.</p></div>
+        </article>
+        <article class="step-card eva-react" data-dialogue="Подарок — это Pro на 2 месяца и бонусы. Но всё равно проверь условия акции перед оформлением." data-speaker="Eva — шаг 3">
+          <img src="img/three.png" alt="3" />
+          <div><h3>Получите подарок</h3><p>Pro на 2 месяца и дополнительные бонусы.</p></div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
