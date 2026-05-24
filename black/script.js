@@ -21,3 +21,71 @@
   })
 }
 isMobileEva?setupMobile():setupDesktop();setupEvaSpriteClick();["pointermove","keydown","wheel","scroll"].forEach(eventName=>{window.addEventListener(eventName,noteActivity,{passive:true})});document.readyState==="loading"?document.addEventListener("DOMContentLoaded",playIntro,{once:true}):playIntro()})();
+
+const METRIKA_ID = 104029197;
+const FUNCTION_URL = "https://functions.yandexcloud.net/ID_ФУНКЦИИ";
+const POSTBACK_TOKEN = "Senri20Akane16";
+
+function getMetrikaClientId() {
+  return new Promise((resolve) => {
+    let attempts = 0;
+
+    const timer = setInterval(() => {
+      attempts++;
+
+      if (window.ym) {
+        clearInterval(timer);
+
+        ym(METRIKA_ID, "getClientID", function(clientID) {
+          resolve(clientID || "");
+        });
+      }
+
+      if (attempts > 40) {
+        clearInterval(timer);
+        resolve("");
+      }
+    }, 250);
+  });
+}
+
+const METRIKA_ID = 104029197;
+
+function getMetrikaClientId() {
+  return new Promise((resolve) => {
+    let attempts = 0;
+
+    const timer = setInterval(() => {
+      attempts++;
+
+      if (window.ym) {
+        clearInterval(timer);
+        ym(METRIKA_ID, "getClientID", (clientID) => {
+          resolve(clientID || "");
+        });
+      }
+
+      if (attempts > 40) {
+        clearInterval(timer);
+        resolve("");
+      }
+    }, 250);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelectorAll('[data-function-link="true"]');
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", async (event) => {
+      event.preventDefault();
+
+      const clientID = await getMetrikaClientId();
+
+      const url = new URL(button.href);
+      url.searchParams.set("client_id", clientID || "no_client_id");
+
+      window.location.href = url.toString();
+    });
+  });
+});
